@@ -1,0 +1,21 @@
+void func(int ind,int sum,vector<int> &num, int N, vector<int> &SubsetSum){
+    if(ind == N){
+        SubsetSum.push_back(sum);
+        return;
+    }
+    
+    //Pick the element
+    func(ind+1, sum+num[ind], num, N, SubsetSum);
+    
+    //Don't pick the element
+    func(ind+1, sum, num, N, SubsetSum);
+}
+vector<int> subsetSum(vector<int> &num)
+{
+    // Write your code here.
+    int N = num.size();
+    vector<int> SubsetSum;
+    func(0, 0, num, N, SubsetSum);
+    sort(SubsetSum.begin(),SubsetSum.end());
+    return SubsetSum;
+}
